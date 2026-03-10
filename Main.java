@@ -1,15 +1,69 @@
+import java.util.Scanner;
+
 public class Main{
 
     public static int doomAno(){//calc doom do ano
         return -1;
     }
 
+    public static int descobrirAncoraDoSeculo(int ano){ //terça, domingo, sexta, quarta, terça...1,2,3,4,5...
+        
+        int i = 16;
+        int cont = 1; 
+        int ancora = -1;
+
+        if(ano == i){ //conta quantos séculos de distância tem do século base
+            cont = 1;
+        }else if(ano>i){
+            do{
+                i++;
+                cont++;
+                if(cont>4){ //reinicia a contagem do ciclo
+                    cont = 1;
+                }
+            }while(ano>i);
+        }else{
+            do{
+                i--;
+                cont--;
+                if(cont>4){ //reinicia a contagem do ciclo
+                    cont = 1;
+                 }
+            }while(ano<i);
+        }
+
+        if(cont==1){ //seleciona o dia da semana, com base em quantos séculos andou
+            //terça
+            ancora = 2;
+        }else if(cont==2){
+            //domingo
+            ancora = 0;
+        }else if(cont==3){
+            //sexta
+            ancora = 5;
+        }else if(cont==4){
+            //quarta
+            ancora = 3;
+        }else{
+            //inválido
+            System.out.println("Erro: A âncora não recebeu um valor válido!");
+        }
+
+        return ancora;
+    }
+
     public static void main(String[] args){
-        int ano = 26; //criar um conversor que tira os 2 dig
+        int ano = 17; //criar um conversor que tira os 2 dig
         int mes = 10; //impedir que o usuário extrapole 12 ou 1
         int dia = 18; //impedir que estrapole 31 && formatar a data
 
+        Scanner scanner = new Scanner(System.in);
 
+        ano = scanner.nextInt();
+
+        System.out.println(descobrirAncoraDoSeculo(ano));
+
+        scanner.close();
     }
 }
 
