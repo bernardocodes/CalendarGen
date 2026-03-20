@@ -6,7 +6,21 @@ public class Main{
         return -1;
     }
 
-    public static int descobrirAncoraDoSeculo(int ano){ //terça, domingo, sexta, quarta, terça...1,2,3,4,5...
+    public static int separaDigitosDoAno(int ano){ //retornar apenas os dois primeiros dígitos de um número
+        int resto = 0;
+        int acc = 0;
+        int cont = 0;
+        while(ano>0 && cont<=1){
+            resto = ano % 10;
+            ano /= 10;
+            acc += resto * Math.pow(10, cont);
+            cont++;
+        }
+
+        return acc;
+    }
+
+    public static int descobrirAncoraDoSeculo(int ano){ //terça, domingo, sexta, quarta, terça...1,2,3,4,5... entregar 2 primeiros dígitos do ano!
         
         int i = 16;
         int cont = 1; 
@@ -53,15 +67,17 @@ public class Main{
     }
 
     public static void main(String[] args){
-        int ano = 17; //criar um conversor que tira os 2 dig
-        int mes = 10; //impedir que o usuário extrapole 12 ou 1
-        int dia = 18; //impedir que estrapole 31 && formatar a data
+        int ano = 0; //criar um conversor que tira os 2 dig
+        int mes = 0; //impedir que o usuário extrapole 12 ou 1
+        int dia = 0; //impedir que estrapole 31 && formatar a data
 
         Scanner scanner = new Scanner(System.in);
 
         ano = scanner.nextInt();
 
-        System.out.println(descobrirAncoraDoSeculo(ano));
+        System.out.println(separaDigitosDoAno(ano));
+        //System.out.println(descobrirAncoraDoSeculo(ano));
+        
 
         scanner.close();
     }
