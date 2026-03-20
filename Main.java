@@ -6,8 +6,47 @@ public class Main{
         return -1;
     }
 
-    public static int separaDigitosDoAno(int ano){ //retornar apenas os dois primeiros dígitos de um número
-        int resto = 0;
+    public static int separaDigitosDoAno(int ano){ //retornar apenas os dois PRIMEIROS dígitos de um número
+
+        int resto = 0; 
+        int acc = 0;
+        int cont = 3;
+
+        while(ano>0){ //inveter o num
+            resto = ano % 10;
+            ano /= 10;
+            acc+= resto * Math.pow(10, cont);
+            cont--;
+        }
+
+        ano = acc;
+        resto = 0; 
+        acc = 0;
+        cont = 0;
+
+        while(ano>0 && cont<2){ //pegar os dois primeiros
+            resto = ano % 10;
+            ano /= 10;
+            acc+= resto * Math.pow(10, cont);
+            cont++;
+        }
+
+        ano = acc;
+        resto = 0; 
+        acc = 0;
+        cont = 1;
+
+        while(ano>0){ //inveter o num novamente
+            resto = ano % 10;
+            ano /= 10;
+            acc+= resto * Math.pow(10, cont);
+            cont--;
+        }
+
+        return acc;
+        
+        /* 
+        int resto = 0; //retornar apenas os dois ÚLTIMOS dígitos de um número
         int acc = 0;
         int cont = 0;
         while(ano>0 && cont<=1){
@@ -18,6 +57,7 @@ public class Main{
         }
 
         return acc;
+        */
     }
 
     public static int descobrirAncoraDoSeculo(int ano){ //terça, domingo, sexta, quarta, terça...1,2,3,4,5... entregar 2 primeiros dígitos do ano!
@@ -42,7 +82,7 @@ public class Main{
                 cont--;
                 if(cont>4){ //reinicia a contagem do ciclo
                     cont = 1;
-                 }
+                }
             }while(ano<i);
         }
 
